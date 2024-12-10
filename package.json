@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "devDependencies": {
+    "@types/gapi.client.firestore-v1": "^0.0.4",
+    "@types/google-apps-script": "^1.0.86"
+  }
+}
