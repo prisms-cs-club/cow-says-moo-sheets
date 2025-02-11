@@ -1,2 +1,3 @@
-# cow-says-moo-sheets
- Google Sheets script for syncing house events
+# Cow Says Moo - Sheets Sync Script
+
+Google Apps Script for syncing house events from Sheets
