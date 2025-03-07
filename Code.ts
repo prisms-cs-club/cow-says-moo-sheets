@@ -1,10 +1,10 @@
-import type { Event } from "./format";
+import type { HouseEvent } from "./format";
 
 // TODO: switch to user properties
 const props = JSON.parse(PropertiesService.getScriptProperties().getProperty("SERVICE_ACCOUNT")!);
 const firestore = FirestoreApp.getFirestore(props.client_email, props.private_key, props.project_id);
 
-var index: string[] = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet().getRange(1, 1, 1, 9).getValues()[0].map(x => x.toLowerCase());
+var index: string[] = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet().getRange(1, 1, 1, 10).getValues()[0].map(x => x.toLowerCase());
 
 /**
  * Creates Firestore documents for events that do not already have a reference.
@@ -47,7 +47,7 @@ function sync(e: GoogleAppsScript.Events.SheetsOnEdit) {
   // );
 }
 
-function parseEntry(entry: Record<string, string | null>): Event {
+function parseEntry(entry: Record<string, string | null>): HouseEvent {
   let tier = null;
   switch(entry["tier"]) {
     case "I": tier = 1; break;
@@ -80,6 +80,7 @@ function parseEntry(entry: Record<string, string | null>): Event {
     }
   }
   const title = entry["title"]!;
+  const signupLink = entry["signupLink"] ?? undefined;
   const albemarle = entry["albemarle"];
   const ettl = entry["ettl"];
   const hobler = entry["hobler"];
@@ -103,6 +104,7 @@ function parseEntry(entry: Record<string, string | null>): Event {
     result,
     description: "",
     winner: winner ?? undefined,
+    signupLink,
   };
 }
 
