@@ -80,7 +80,7 @@ function parseEntry(entry: Record<string, string | null>): HouseEvent {
     }
   }
   const title = entry["title"]!;
-  const signupLink = entry["signupLink"] ?? undefined;
+  const signupLink = entry["signup link"] ?? undefined;
   const albemarle = entry["albemarle"];
   const ettl = entry["ettl"];
   const hobler = entry["hobler"];
